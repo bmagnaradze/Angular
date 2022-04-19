@@ -18,6 +18,13 @@
 .d-flex {
    display: flex;
 }
+.ta-right {
+    text-align: right;
+}
+.followers-list{
+      max-height: 500px;
+      overflow: scroll;
+} 
 
 .name {
     overflow: hidden;
@@ -41,3 +48,10 @@
 .fd-column {
     flex-direction: column;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .details {
+        width: 100%;
+    }
+  }

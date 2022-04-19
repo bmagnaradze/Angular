@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserServiceComponent } from '../services/user-service';
 
 
@@ -8,9 +9,11 @@ import { UserServiceComponent } from '../services/user-service';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit , OnDestroy {
 
   @Input() users!: any[]
+ private subscription!: Subscription;
+
 
 
   constructor(private userService: UserServiceComponent,
@@ -27,5 +30,9 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['/user-detail', user.id])
   }
  
+
+  ngOnDestroy(): void {
+    //  this.subscription.unsubscribe()
+  }
 
 }

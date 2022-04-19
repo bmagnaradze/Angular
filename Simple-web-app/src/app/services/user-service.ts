@@ -12,7 +12,6 @@ export class UserServiceComponent implements OnInit {
 
   readonly apiUrl = environment.apiUrl;  
   users! : string
-  folowers! : string
 
   constructor( private http: HttpClient) { }
 
@@ -21,12 +20,12 @@ export class UserServiceComponent implements OnInit {
       
     }
 
-    getInfo(id: string): Observable<any> {
+    getInfo(id: string){
       const url = this.apiUrl + '/' + id
       return this.http.get<User>(url);
-      
-      
     }
+
+   
 
   ngOnInit(): void {
   }

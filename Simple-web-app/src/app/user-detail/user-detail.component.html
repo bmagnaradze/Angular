@@ -17,10 +17,22 @@
     </div>
    
     <div class="followers-info d-flex">
-      <button class="btn btn-primary">Followers : {{user.followers}} </button>
+      <button class="btn btn-primary" 
+              (click)="onGetFollowers()">Followers : {{user.followers}} </button>
       <button class="btn btn-success">Following : {{user.following}} </button> 
       <button class="btn btn-danger">Repository : </button> 
-
     </div>
+    <hr>
+    <div class="followers-list">
+      <button class="btn btn-primary ta-right" *ngIf="followers" >X</button>
+      <mat-list *ngFor="let follower of followers">
+        <mat-list-item  >
+          <img matListAvatar src="{{ user.avatar_url }}" alt="...">
+          <h3 matLine> {{user.name}} </h3>
+        </mat-list-item>
+      </mat-list>
+    </div>
+   
   </div>
+  
 </div>

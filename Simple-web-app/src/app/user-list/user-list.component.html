@@ -1,6 +1,5 @@
 <mat-list *ngFor="let user of users">
-    <mat-list-item  
-                    (click)="onSelect(user)">
+    <mat-list-item  (click)="onSelect(user)">
       <img matListAvatar src="{{ user.avatar_url }}" alt="...">
       <h3 matLine> {{user.login}} </h3>
     </mat-list-item>
