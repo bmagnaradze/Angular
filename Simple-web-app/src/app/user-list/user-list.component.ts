@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserServiceComponent } from '../services/user-service';
 
 
@@ -12,16 +13,19 @@ export class UserListComponent implements OnInit {
   @Input() users!: any[]
 
 
-  constructor(private userService: UserServiceComponent) { }
+  constructor(private userService: UserServiceComponent,
+              private router: Router) { }
 
   ngOnInit(): void {
       this.userService.getData().subscribe((data) => {
-        console.log(data);
         this.users = data;
       })
    
   }
-
+ 
+  onSelect(user: {id: any}) {
+    this.router.navigate(['/user-detail', user.id])
+  }
  
 
 }

@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { User } from '../interface/user.interface';
 
 
 @Injectable({
@@ -16,12 +17,14 @@ export class UserServiceComponent implements OnInit {
   constructor( private http: HttpClient) { }
 
     getData(): Observable<any> {
-      return this.http.get<any>( environment.apiUrl[0]);
+      return this.http.get<User>( environment.apiUrl);
       
     }
 
-    getFollowers(): Observable<any> {
-      return this.http.get<any>( environment.apiUrl[1]);
+    getInfo(id: string): Observable<any> {
+      const url = this.apiUrl + '/' + id
+      return this.http.get<User>(url);
+      
       
     }
 

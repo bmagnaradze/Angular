@@ -1,6 +1,26 @@
-<mat-list *ngFor="let folower of folowers">
-  <mat-list-item  routerLink="/user-detail">
-    <img matListAvatar src="" alt="...">
-    <h3 matLine> {{folowers}} </h3>
-  </mat-list-item>
-</mat-list>
+
+<div class="container">
+  <div class="details" *ngIf="user$ |async as user" >
+    <div class="d-flex">
+      <img  src="{{ user.avatar_url }}" class="avatarImg">
+      <div class="user-info d-flex">
+        <div class="d-flex fd-column">
+            <h3 class="name" >Name: {{user.name}} </h3>
+            <h3 > ID: {{user.id}} </h3>
+        </div>
+        <div class="d-flex fd-column ">
+            <h3>Sinse: {{user.created_at}}</h3>
+            <h3>From: {{user.location}}</h3>
+        </div>
+        
+      </div>
+    </div>
+   
+    <div class="followers-info d-flex">
+      <button class="btn btn-primary">Followers : {{user.followers}} </button>
+      <button class="btn btn-success">Following : {{user.following}} </button> 
+      <button class="btn btn-danger">Repository : </button> 
+
+    </div>
+  </div>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit , Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from '../interface/user.interface';
 import { UserServiceComponent } from '../services/user-service';
 
 
@@ -10,18 +13,20 @@ import { UserServiceComponent } from '../services/user-service';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-
-  @Input() folowers!: any[]
+   user$!: Observable<User>
+  
    
   
 
-  constructor(private userService: UserServiceComponent) { }
+  constructor(private userService: UserServiceComponent,
+               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.userService.getFollowers().subscribe((data) => {
-      console.log(data);
-      this.folowers = data;
-    })
+   const id = this.route.snapshot.paramMap.get('id');
+      if(id!== null) {
+        this.user$ = this.userService.getInfo(id);
+      }
+    }
   }
 
-}
+
